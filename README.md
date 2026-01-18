@@ -23,6 +23,10 @@ Este proyecto es una aplicacion movil desarrollada para consumir el Webservice d
    ```bash
    npm install
    ```
+   En caso de error, ejecutar
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 3. **Configurar variables de entorno**:
    Copia los archivos de ejemplo y añade tu API Key:
    ```bash
