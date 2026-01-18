@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="product-content">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="product-shell">
+    @if (error(); as errorMsg) {
+    <ion-text color="danger">
+      <p class="helper-text">{{ errorMsg }}</p>
+    </ion-text>
+    }
+
+    @if (isLoading()) {
+    <div class="loading-row">
+      <ion-spinner name="crescent"></ion-spinner>
+      <ion-text color="medium">Cargando productos...</ion-text>
+    </div>
+    }
+
+    <div class="product-grid">
+      @for (product of products(); track product.id) {
+      <div class="product-card" [routerLink]="['/tabs/products', product.id]">
+        <div class="product-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 8H15M9 12H15M9 16H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-price">
+            {{ product.price | currency: 'EUR' : 'symbol' : '1.2-2' }}
+          </p>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="product-chevron"></ion-icon>
+      </div>
+      }
+
+      @if (!products().length && !isLoading() && !error()) {
+      <ion-text color="medium">
+        <p class="helper-text">No hay productos para mostrar.</p>
+      </ion-text>
+      }
+    </div>
+  </div>
+</ion-content>

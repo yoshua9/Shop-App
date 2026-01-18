@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-title>Perfil</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content">
+	<div class="profile-wrapper">
+		<div class="profile-hero">
+			<div class="avatar-container">
+				<img [src]="profile().avatarUrl" [alt]="profile().fullName" />
+			</div>
+			<div class="profile-info">
+				<h1 class="profile-name">{{ profile().fullName }}</h1>
+				<div class="profile-role-badge">{{ profile().role }}</div>
+				<p class="profile-bio">{{ profile().bio }}</p>
+			</div>
+		</div>
+
+		<div class="details-section">
+			<h2 class="section-title">Información Personal</h2>
+			<div class="details-card">
+				@for (item of details(); track item.label) {
+				<div class="detail-item">
+					<ion-icon [name]="item.icon" class="detail-icon"></ion-icon>
+					<span class="detail-label">{{ item.label }}:</span>
+					<span class="detail-value">{{ item.value }}</span>
+				</div>
+				}
+			</div>
+		</div>
+	</div>
+</ion-content>

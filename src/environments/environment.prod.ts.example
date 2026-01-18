@@ -1,0 +1,6 @@
+export const environment = {
+  production: true,
+  apiUrl: 'https://dev.prestashop4.sdi.es/api',
+  apiKey: 'YOUR_API_KEY_HERE',
+  shopUrl: 'https://dev.prestashop4.sdi.es/'
+};

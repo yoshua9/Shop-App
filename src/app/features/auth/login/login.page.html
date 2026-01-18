@@ -1,0 +1,42 @@
+<ion-content class="login-content">
+  <div class="login-wrapper">
+    <div class="login-header">
+      <div class="brand-icon">
+        <ion-icon name="storefront-outline"></ion-icon>
+      </div>
+      <h1 class="login-title">¡Bienvenido!</h1>
+      <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="input-group">
+        <label class="input-label">Usuario</label>
+        <ion-input formControlName="username" placeholder="Ingresa tu usuario" autocomplete="username" inputmode="text"
+          fill="outline" class="custom-input"></ion-input>
+        @if (form.controls.username.touched && form.controls.username.invalid) {
+        <span class="error-text">El usuario es obligatorio</span>
+        }
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Contraseña</label>
+        <ion-input formControlName="password" type="password" placeholder="Ingresa tu contraseña"
+          autocomplete="current-password" fill="outline" class="custom-input"></ion-input>
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+        <span class="error-text">La contraseña es obligatoria</span>
+        }
+      </div>
+
+      <ion-button type="submit" expand="block" class="login-btn" [disabled]="form.invalid || isLoading">
+        @if (isLoading) {
+        <ion-spinner name="crescent" slot="start"></ion-spinner>
+        }
+        {{ isLoading ? 'Ingresando...' : 'Ingresar' }}
+      </ion-button>
+
+      <p class="hint-text">
+        Credenciales de prueba: <strong>admin / admin</strong>
+      </p>
+    </form>
+  </div>
+</ion-content>
